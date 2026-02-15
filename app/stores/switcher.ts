@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const switcherStore = defineStore('switcher', {
     state: () => ({
-        colortheme: 'light',            // light, dark
+        colortheme: 'dark',            // light, dark
         direction: 'ltr',               // ltr, rtl
         navigationStyles: 'vertical',   // vertical, horizontal
         menuStyles: '',                 // menu-click, menu-hover, icon-click, icon-hover
@@ -21,7 +21,7 @@ export const switcherStore = defineStore('switcher', {
 
     },
     actions: {
-        colorthemeFn(value:string) {
+        colorthemeFn(value: string) {
             let html = document.querySelector('html')!;
             if (value == 'light') {
                 this.$state.colortheme = 'light';
@@ -67,8 +67,8 @@ export const switcherStore = defineStore('switcher', {
             }
         },
 
-      
-        directionFn(value:string) {
+
+        directionFn(value: string) {
             let html = document.querySelector('html')!;
             if (value === 'rtl') {
                 this.$state.direction = 'rtl';
@@ -79,7 +79,7 @@ export const switcherStore = defineStore('switcher', {
                 html.setAttribute("dir", "ltr");
             }
         },
-        navigationStylesFn(value:string) {
+        navigationStylesFn(value: string) {
             let html = document.querySelector('html')!;
             let mainMenu = document.querySelector('.main-menu') as HTMLElement | null;
             mainMenu ? mainMenu.style.marginInlineStart = '0' : '';
@@ -87,7 +87,7 @@ export const switcherStore = defineStore('switcher', {
                 this.$state.navigationStyles = 'horizontal';
                 this.$state.menuStyles = "menu-click";
                 html.setAttribute('data-nav-layout', 'horizontal');
-                html.setAttribute('data-toggled','close')
+                html.setAttribute('data-toggled', 'close')
                 html.removeAttribute('data-vertical-style');
                 if (!html.getAttribute('data-nav-style')) {
                     html.setAttribute('data-nav-style', 'menu-click');
@@ -107,7 +107,7 @@ export const switcherStore = defineStore('switcher', {
                 }
             }
         },
-        layoutStylesFn(value:string) {
+        layoutStylesFn(value: string) {
             let html = document.querySelector('html')!;
             let appSidebar = document.querySelector('.app-sidebar');
             let mainMenu = document.querySelector('.main-menu') as HTMLElement;
@@ -187,7 +187,7 @@ export const switcherStore = defineStore('switcher', {
                             }
                         }
                     })
-                   if (appSidebar instanceof HTMLElement) {
+                    if (appSidebar instanceof HTMLElement) {
                         appSidebar.addEventListener('mouseenter', this.iconoverLayoutHoverFn, { passive: true });
                     }
                     if (appSidebar instanceof HTMLElement) {
@@ -198,8 +198,8 @@ export const switcherStore = defineStore('switcher', {
                     this.$state.layoutStyles = value;
                     html.setAttribute('data-nav-layout', 'vertical');
                     html.setAttribute('data-toggled', 'double-menu-open');
-                    if(window.innerWidth < 992){
-                       html.setAttribute('data-toggled', 'close');
+                    if (window.innerWidth < 992) {
+                        html.setAttribute('data-toggled', 'close');
                     }
                     html.setAttribute('data-vertical-style', 'doublemenu');
                     // eslint-disable-next-line no-case-declarations
@@ -303,7 +303,7 @@ export const switcherStore = defineStore('switcher', {
                 }
             }
         },
-        menuStylesFn(value:string) {
+        menuStylesFn(value: string) {
             let html = document.querySelector('html')!;
             this.$state.menuStyles = value;
             let mainMenu = document.querySelector('.main-menu') as HTMLElement;
@@ -361,49 +361,49 @@ export const switcherStore = defineStore('switcher', {
                 }
             }
         },
-        pageStylesFn(value:string) {
+        pageStylesFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.pageStyles = value;
                 html.setAttribute('data-page-style', value);
             }
         },
-        widthStylesFn(value:string) {
+        widthStylesFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.widthStyles = value;
                 html.setAttribute('data-width', value);
             }
         },
-        menuPositionFn(value:string) {
+        menuPositionFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.menuPosition = value;
                 html.setAttribute('data-menu-position', value);
             }
         },
-        headerPositionFn(value:string) {
+        headerPositionFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.headerPosition = value;
                 html.setAttribute('data-header-position', value);
             }
         },
-        menuColorFn(value:string) {
+        menuColorFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.menuColor = value;
                 html.setAttribute('data-menu-styles', value);
             }
         },
-        headerColorFn(value:string) {
+        headerColorFn(value: string) {
             let html = document.querySelector('html')!;
             if (value) {
                 this.$state.headerColor = value;
                 html.setAttribute('data-header-styles', value);
             }
         },
-        themePrimaryFn(value:string) {
+        themePrimaryFn(value: string) {
             let html = document.querySelector('html')!;
             let primaryrgb = value ? value : localStorage.vyzorprimaryRGB;
             if (primaryrgb) {
@@ -412,7 +412,7 @@ export const switcherStore = defineStore('switcher', {
                 localStorage.setItem('vyzorprimaryRGB', primaryrgb)
             }
         },
-        themeBackgroundFn(val1:string, val2:string) {
+        themeBackgroundFn(val1: string, val2: string) {
             this.$state.themeBackground = `${val1}, ${val2}` ?? '';
             let html = document.querySelector('html')!;
             let bgrgb = val1 ? val1 : localStorage.vyzorbodyBgRGB;
@@ -437,7 +437,7 @@ export const switcherStore = defineStore('switcher', {
             this.headerColor = 'dark'
             // }
         },
-        backgroundImageFn(value:string) {
+        backgroundImageFn(value: string) {
             let html = document.querySelector('html')!;
             this.$state.backgroundImage = value;
             html.setAttribute('data-bg-img', value);
